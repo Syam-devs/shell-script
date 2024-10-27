@@ -9,15 +9,16 @@ LOGFILE="/tmp/$0-$TIMESTAMP.log"
 VALIDATE(){
     if [ $? -ne 0]
 then 
-    echo "error: $1 ... is $R failed $N"
+    echo -e "error: $1 ... is $R failed $N"
 else    
     echo "$2 .... is $G success $N"
 fi
 
 }
+
 if [ $ID -ne 0 ]
 then    
-    echo "$R error: please run this script with root access"
+    echo -e "$R error: please run this script with root access"
 else
     echo "you are $G root $N"
 fi
