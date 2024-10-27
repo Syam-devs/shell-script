@@ -3,8 +3,8 @@ R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
-TIMESTAMP=$(DATE +%F-%H-%M-%S)
-LOGFILE="/tmp/$0-%TIMESTAMP.log"
+TIMESTAMP=$(date +%F-%H-%M-%S)
+LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 VALIDATE() {
@@ -15,7 +15,7 @@ VALIDATE() {
         echo -e "$2 .... is $G SUCCESS $N" | tee -a $LOGFILE
     fi
 }
-if [ $ID -ne 0]
+if [ $ID -ne 0 ]
 then
     echo -e "$R error: please run this script with root access $N"
     exit 1      
@@ -26,7 +26,7 @@ fi
 for package in $@
 do
     yum installed $package &>> $LOGFILE
-    if [ $? -ne 0]
+    if [ $? -ne 0 ]
     then
         yum install $package &>> $LOGFILE
         VALIDATE $? "installing of $package"
