@@ -10,6 +10,7 @@ VALIDATE(){
     if [ $? -ne 0]
     then 
         echo -e "error: $2 ... is $R FAILED $N"
+        exit 1
     else    
         echo "$2 .... is $G SUCCESS $N"
     fi
@@ -18,6 +19,7 @@ VALIDATE(){
 if [ $ID -ne 0 ]
 then    
     echo -e "$R error: please run this script with root access $N"
+    exit 1
 else
     echo "you are $G root $N"
 fi
