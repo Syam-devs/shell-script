@@ -7,11 +7,11 @@ N="\e[0m"
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
 VALIDATE(){
-    if [ $? -ne 0]
+if [ $? -ne 0]
 then 
-    echo -e "error: $1 ... is $R failed $N"
+    echo -e "error: $2 ... is $R FAILED $N"
 else    
-    echo "$2 .... is $G success $N"
+    echo "$2 .... is $G SUCCESS $N"
 fi
 
 }
