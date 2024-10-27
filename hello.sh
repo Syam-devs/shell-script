@@ -4,3 +4,4 @@
 
 echo "hello shell script"
 TIMESTAMP=$(date +%F-%H-%M-%S)
+echo "script started at $TIMESTAMP"
