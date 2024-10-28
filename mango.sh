@@ -4,9 +4,8 @@ ID=$(id -u)
 
 R="\e[31m"
 G="\e[32m"
-R="\e[33m"
-N="\e[0m"
 Y="\e[33m"
+N="\e[0m"
 
 TIMESTAMP=$(date +%F-%H-%M-%S)
 
@@ -15,8 +14,7 @@ LOGFILE="/tmp/$0-$TIMESTAMP.log"
 echo "script started executing at $TIMESTAMP" &>> $LOGFILE
 
 VALIDATE() {
-    if [ $1 -ne 0 ]
-    then
+    if [ $1 -ne 0 ]; then
         echo -e "error: $2 ... is $R FAILED $N" &>> $LOGFILE
         exit 1
     else
@@ -24,15 +22,14 @@ VALIDATE() {
     fi
 }
 
-if [ $ID -ne 0 ]
-then
-    echo -e "$R error: please run this script with root access $N"
+if [ $ID -ne 0 ]; then
+    echo -e "${R}error: please run this script with root access${N}"
     exit 1
 else
-    echo -e "you are $G root $N"
+    echo -e "you are ${G}root${N}"
 fi
 
-cp mongo.repo /etc/yum.repos.d/mongo.rep &>> $LOGFILE
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
 VALIDATE $? "copying mongo.repo file"
 
@@ -54,7 +51,6 @@ echo "mongodb installation completed"
 
 sed -i 's/127.0.0.1/0.0.0.0/' /etc/mongod.conf &>> $LOGFILE
 
-systemctl restart mongod
+systemctl restart mongod &>> $LOGFILE
 
 VALIDATE $? "restarting mongod service"
-
